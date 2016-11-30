@@ -1,0 +1,19 @@
+{
+    "name": "s381f_project",
+    "description": "OUHK COMPS381F Project Assignment",
+    "author": "laed",
+    "version": "0.0.1",
+    "dependencies": {
+		"body-parser": "*",
+        "mongoose": "*",
+		"express" : "*",
+        "ejs": "*",
+        "express-fileupload": "*",
+        "cookie-session": "*",
+        "cfenv": "1.0.x"
+    },
+    "engine": "node >= 0.10.0",
+    "scripts": {
+        "start": "node server"
+    }
+}

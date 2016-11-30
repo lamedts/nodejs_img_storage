@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Cloud Project</title>
+
+		<!--Import Google Icon Font-->
+      <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <link type="text/css" rel="stylesheet" href="/layout.css" />
+    </head>
+  </head>
+  <body>
+
+
+<div class="container">
+  <div class="row valign-wrapper">
+    <div class="col s12 valign">
+      <div class="card">
+        <div class="card-action teal lighten-2">
+          <span class="card-title white-text">Login</span>
+        </div>
+        <div class="card-content">
+          <div class="row">
+            <form class="input-field col s12" method="post">
+              <div class="input-field col s12">
+                <input id="fusername" type="text" name="userid" class="validate">
+                <label for="fusername">Username</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate" name="password">
+                <label for="password">Password</label>
+              </div>
+              <div class="center-btn">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                  <i class="material-icons right">send</i>
+                </button>
+          <a class="btn-flat"
+              type="submit"
+              href="/user/mgt/add">
+            Register
+          </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+			<!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    </body>
+</html>

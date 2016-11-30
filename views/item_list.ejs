@@ -1,0 +1,93 @@
+<html>
+  <head>
+  <title>CPJ | List</title>
+    <!--Import Google Icon Font-->
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link type="text/css" rel="stylesheet" href="/layout.css" />
+  </head>
+  </head>
+  <body>
+
+<div class="container fix-container">
+<div class="row">
+  <div class="col s12 m4 offset-m2">
+  <div class="card">
+    <div class="card-action teal lighten-2">
+    <span class="card-title white-text">Restaurant</span>
+    </div>
+    <div class="card-content card-action">
+      User: <%= user %>
+      <br>
+      Number of Restaurant: <%= noDocs %>
+      <br>
+      criteria: <%= criteria %>
+    </div>
+    <div class="card-action">
+      <form action="#">
+      <div class="input-field">
+        <select name="borough">
+         <option value="" disabled selected>Choose your option</option>
+         <% for(var i=0; i<borough.length; i++) {%>
+           <option value="<%- borough[i] %>"><%= borough[i] %></option>
+          <% } %>
+        </select>
+        <label>Borough</label>
+       </div>
+       <div class="input-field">
+        <select name="cuisine" >
+         <option value="" disabled selected>Choose your option</option>
+         <% for(var i=0; i<cuisine.length; i++) {%>
+           <option value="<%- cuisine[i] %>"><%= cuisine[i] %></option>
+          <% } %>
+        </select>
+       <label>cuisine</label>
+       </div>
+       <div class="input-field">
+        <input id="name" name="name" type="text" class="validate">
+       <label for="name">Name</label>
+       </div>
+       <div class="center-btn">
+        <button class="btn waves-effect waves-light" type="submit">Search
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+     </form>
+    </div>
+    <div class="card-action">
+    <a href="/item/create">Create</a>
+    </div>
+    <div class="card-action">
+      <a href="/user/mgt/edit">User Profile</a>
+    </div>
+    <div class="card-action">
+    <a href="/user/logout">Logout</a>
+    </div>
+  </div>
+  </div>
+
+  <div class="collection col s12 m4" style="padding: 0">
+  <% for(var i=0; i<restaurant.length; i++) {%>
+    <a href='/item/<%= restaurant[i].id %>' class="collection-item">
+    <span><%= i + 1 %>. </span><%= restaurant[i].name %>
+    </a>
+  <% } %>
+  </div>
+
+</div>
+</div>
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>CPJ | Rate</title>
+
+		<!--Import Google Icon Font-->
+      <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <link type="text/css" rel="stylesheet" href="/layout.css" />
+    </head>
+  </head>
+  <body>
+
+
+<div class="container">
+  <div class="row valign-wrapper">
+    <div class="col s12 valign" style="min-width: 30rem">
+      <div class="card" >
+        <div class="card-action teal lighten-2">
+          <span class="card-title white-text">Rate for <b><%= name %></b></span>
+        </div>
+        <form action="../rate" method="post">
+          <div class="card-content">
+            <p class="range-field">
+              <input name="score" type="range" id="score" min="1" max="10" value="1"/>
+            </p>
+          </div>
+          <div class="card-action">
+            <div class="center-btn">
+              <button class="btn waves-effect waves-light" type="submit">Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+			<!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    </body>
+</html>
