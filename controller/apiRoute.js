@@ -13,40 +13,38 @@ router.get('/', function(req, res){
 
 router.post('/create', function(req, res){
 	var resJson = {};
-	var	newJson = {};
+	var	newJson = {
+		address : {
+	        zipcode  : req.body.zipcode,
+	        building : req.body.building,
+	        coord    : []
+	    },
+	    borough : req.body.borough,
+	    cuisine : req.body.cuisine,
+	    name    : req.body.name,
+	    by      : req.session.userid,
+	    img     : {}
+	};
+	if(req.body.lat !== ''){
+		newJson.address.coord = {
+            lat: req.body.lat,
+			lon: req.body.lon
+        };
+	}
+	if (!req.files.imgFile.name) {
+        newJson.img = {
+        	data     : null,
+	    	contentType : null,
+	    	filename    : null
+	    };
+    }else{
+    	newJson.img = {
+	    	data: new Buffer(req.files.imgFile.data).toString('base64'),
+	    	contentType: req.files.imgFile.mimetype,
+	    	filename: req.files.imgFile.name
+    	};
+    }
 	if(req.body.from == 'form'){
-		newJson = {
-			address : {
-		        zipcode  : req.body.zipcode,
-		        building : req.body.building,
-		        coord    : []
-		    },
-		    borough : req.body.borough,
-		    cuisine : req.body.cuisine,
-		    name    : req.body.name,
-		    by      : req.session.id,
-		    img     : {}
-		};
-		if(req.body.lat !== ''){
-			newJson.address.coord = {
-	            lat: req.body.lat,
-				lon: req.body.lon
-	        };
-		}
-		if (!req.files.imgFile.name) {
-	        newJson.img = {
-	        	data     : null,
-		    	contentType : null,
-		    	filename    : null
-		    };
-	    }else{
-	    	newJson.img = {
-		    	data: new Buffer(req.files.imgFile.data).toString('base64'),
-		    	contentType: req.files.imgFile.mimetype,
-		    	filename: req.files.imgFile.name
-	    	};
-	    }
-
 		dbHandler.saveDoc(newJson, function(value){
 			if(value === false){
 				resJson.status  = false;

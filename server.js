@@ -1,5 +1,4 @@
 /* jshint node: true */
-// tests
 'use strict';
 
 var express    = require('express');
@@ -25,7 +24,7 @@ app.set('trust proxy', 1);
 app.use(session({
 	name: 'session',
 	keys: [SECRETKEY1,SECRETKEY2],
-	//maxAge: 5 * 60 * 1000
+	maxAge: 15 * 60 * 1000
 }));
 app.use(function(req, res, next){
 	console.log('Incoming request: %s from %s', req.path, req.ip);
@@ -43,7 +42,6 @@ app.get('/',function(req,res) {
 app.get('/list', isAuthenticated, function(req, res){
 	var query = {};
     if(req.query){
-        //query = req.query
         if(req.query.cuisine)
             query.cuisine = req.query.cuisine;
         if(req.query.borough)
@@ -92,25 +90,20 @@ app.post('/item/:id/:action', isAuthenticated, function(req, res){
 	var resJson = {};
 	var found = false;
 	if(req.params.action == 'rate'){
-		console.log(req.session.rate)
-
 		req.session.rate.forEach(function(value){
-		  if(value.by == req.session.userid){
-			  console.log(value.by)
-		  	found = true
-		}
+			if(value.by == req.session.userid)
+				found = true;
 		});
 		if(!found){
 			passJson = req.body;
 			passJson.by = req.session.userid;
 		}else{
 			resJson.status = false;
-			resJson.words = "Action Fail";
+			resJson.words = "Can't do second rating";
 			resJson.backUrl = '/item/' + req.params.id;
 			req.session.resp = resJson;
 			return res.redirect('/resp');
 		}
-
 	}else if(req.params.action == 'edit'){
 		passJson = {
 			address : {
@@ -131,7 +124,7 @@ app.post('/item/:id/:action', isAuthenticated, function(req, res){
 	    }else if(req.files.imgFile.name && req.files.imgFile.name != req.body.oldname){
 	    	console.log("change");
 			if(req.files.imgFile.mimetype.indexOf('pdf') > -1){
-				console.log(req.files.imgFile.mimetype)
+				console.log(req.files.imgFile.mimetype);
 			}else{
 		    	passJson.img = {
 			    	data: new Buffer(req.files.imgFile.data).toString('base64'),

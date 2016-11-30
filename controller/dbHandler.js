@@ -15,7 +15,6 @@ module.exports = {
 		var projection    = '';
         var borough = [];
         var cuisine = [];
-
 		if(from == 'api')
 			projection = '-img.data';
         else
@@ -33,16 +32,13 @@ module.exports = {
                     });
 			});
 
-
 	},
 	getDoc: function(id, action, callback){
-		console.log(id)
 		var projection = '';
 		if(action == 'edit')
 			projection = '-img.data';
 		restaurant.findById(id).select(projection).exec()
 			.then(function(item){
-				console.log(item);
 				callback(item);
 			});
 	},
